@@ -33,7 +33,6 @@ export default function PizzaParty() {
       </h1>
 
       <div className="flex flex-col lg:flex-row gap-8 mb-12">
-        {/* Carrusel de imágenes verticales */}
         <div className="lg:w-1/3">
           <div className="relative aspect-[3/4] w-full">
             <img
@@ -59,7 +58,6 @@ export default function PizzaParty() {
           </div>
         </div>
 
-        {/* Contenido informativo */}
         <div className="lg:w-2/3 space-y-8">
           <div>
             <h2 className="text-2xl font-semibold mb-4">

@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import { supabase } from "../lib/supabase";
 import type { MenuItem } from "../types/menu";
+import { Loader2 } from "lucide-react";
 
 export default function Menu() {
   const [menu, setMenu] = useState<MenuItem[]>([]);
@@ -33,11 +34,15 @@ export default function Menu() {
   }
 
   if (loading) {
-    return <div className="container mx-auto px-4 py-8">Cargando menú...</div>;
+    return (
+      <div className="container mx-auto px-4 py-8 flex justify-center items-center h-[50vh]">
+        <Loader2 className="h-8 w-8 animate-spin" />
+      </div>
+    );
   }
 
   return (
-    <div className="container mx-auto px-4 py-8">
+    <div className="container mx-auto px-4 py-8 ">
       <h1 className="text-3xl font-bold text-center mb-8">Nuestro Menú</h1>
 
       <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">

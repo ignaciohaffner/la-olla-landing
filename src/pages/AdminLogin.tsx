@@ -18,7 +18,7 @@ export default function AdminLogin() {
 
       if (error) throw error;
 
-      navigate("/admin/menu");
+      navigate("/admin/panel");
     } catch (error) {
       setError("Error al iniciar sesión");
       console.error("Error:", error);

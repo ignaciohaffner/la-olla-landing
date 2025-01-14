@@ -42,9 +42,7 @@ export default function Layout() {
               <Link to="/pizza-party" className="hover:text-yellow-400">
                 Pizza Party
               </Link>
-              <Link to="/about-us" className="hover:text-yellow-400">
-                Acerca de Nosotros
-              </Link>
+
               <Link to="/contacto" className="hover:text-yellow-400">
                 Contacto
               </Link>
@@ -86,13 +84,7 @@ export default function Layout() {
               >
                 Pizza Party
               </Link>
-              <Link
-                to="/about-us"
-                className="hover:text-yellow-400"
-                onClick={() => setIsMenuOpen(false)}
-              >
-                Acerca de Nosotros
-              </Link>
+
               <Link
                 to="/contacto"
                 className="hover:text-yellow-400"
@@ -126,6 +118,15 @@ export default function Layout() {
                 WhatsApp
               </a>
             </div>
+          </div>
+          <div className="text-white text-left">
+            Hecha por{" "}
+            <a
+              className="text-green-200"
+              href="https://github.com/ignaciohaffner/"
+            >
+              Ignacio Haffner
+            </a>
           </div>
         </div>
       </footer>
