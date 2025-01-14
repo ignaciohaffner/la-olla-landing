@@ -1,4 +1,5 @@
 import { Link } from "react-router-dom";
+import chuletaconpapas from "../assets/laolla/chuletaconpapas.jpeg";
 
 export default function Home() {
   return (
@@ -35,7 +36,7 @@ export default function Home() {
           <div className="grid grid-cols-1 md:grid-cols-3 gap-8">
             <div className="bg-white rounded-lg shadow-md overflow-hidden">
               <img
-                src="src\assets\laolla\chuletaconpapas.jpeg?height=200&width=300"
+                src={chuletaconpapas}
                 alt="Comidas"
                 className="w-full h-64 object-cover"
               />
