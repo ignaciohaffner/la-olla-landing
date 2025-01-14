@@ -27,10 +27,16 @@ export default function Contact() {
             Síguenos en redes sociales
           </h2>
           <div className="flex space-x-4">
-            <a href="#" className="text-blue-600 hover:text-blue-800">
+            <a
+              href="https://www.facebook.com/profile.php?id=100054471429554"
+              className="text-blue-600 hover:text-blue-800"
+            >
               <Facebook className="w-8 h-8" />
             </a>
-            <a href="#" className="text-pink-600 hover:text-pink-800">
+            <a
+              href="https://www.instagram.com/rotiserialaolla/"
+              className="text-pink-600 hover:text-pink-800"
+            >
               <Instagram className="w-8 h-8" />
             </a>
           </div>

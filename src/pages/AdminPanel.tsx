@@ -305,7 +305,7 @@ export default function AdminPanel() {
                         onChange={(e) => {
                           const newValue = e.target.value;
                           if (newValue === "") {
-                            handlePriceChange(item.id, null);
+                            handlePriceChange(item.id, 0);
                           } else {
                             const newPrice = parseFloat(newValue);
                             if (!isNaN(newPrice)) {
