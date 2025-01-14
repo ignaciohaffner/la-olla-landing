@@ -1,13 +1,12 @@
 import { useState, useEffect } from "react";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import { Button } from "../components/components/ui/button";
+import pizzaparty from "../assets/laolla/pizzaparty.jpg";
+import pizzaparty2 from "../assets/laolla/pizzaparty2.jpeg";
+import pizzaparty3 from "../assets/laolla/pizzaparty3.jpeg";
+import pizzaparty4 from "../assets/laolla/pizzaparty4.jpeg";
 
-const images = [
-  "src/assets/laolla/pizzaparty.jpg",
-  "src/assets/laolla/pizzaparty2.jpeg",
-  "src/assets/laolla/pizzaparty3.jpeg",
-  "src/assets/laolla/pizzaparty4.jpeg",
-];
+const images = [pizzaparty, pizzaparty2, pizzaparty3, pizzaparty4];
 
 export default function PizzaParty() {
   const [currentImage, setCurrentImage] = useState(0);

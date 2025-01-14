@@ -1,5 +1,7 @@
 import { Link } from "react-router-dom";
 import chuletaconpapas from "../assets/laolla/chuletaconpapas.jpeg";
+import pizzapalmitos from "../assets/pizzapalmitos.jpeg";
+import pizzaparty2 from "../assets/laolla/pizzaparty2.jpeg";
 
 export default function Home() {
   return (
@@ -50,7 +52,7 @@ export default function Home() {
             </div>
             <div className="bg-white rounded-lg shadow-md overflow-hidden">
               <img
-                src="src\assets\pizzapalmitos.jpeg"
+                src={pizzapalmitos}
                 alt="Pizzas"
                 className="w-full h-64 object-cover"
               />
@@ -64,7 +66,7 @@ export default function Home() {
             </div>
             <div className="bg-white rounded-lg shadow-md overflow-hidden">
               <img
-                src="src\assets\laolla\pizzaparty2.jpeg?height=200&width=300"
+                src={pizzaparty2}
                 alt="Pizza Party"
                 className="w-full h-64 object-cover object-top"
               />
