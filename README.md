@@ -1,50 +1,23 @@
-# React + TypeScript + Vite
+# La Olla - Rotisería Website
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+## Description
 
-Currently, two official plugins are available:
+La Olla is a website for a local takeaway and catering service. This project aims to provide an online presence for La Olla, showcasing their menu, services, and allowing customers to easily contact the business. The website features a responsive design, ensuring a great user experience across all devices.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+## Features
 
-## Expanding the ESLint configuration
+- Home page with an overview of La Olla's services
+- Menu page displaying various food categories and items
+- Pizza Party service information page
+- Contact page for customer inquiries
+- Admin panel for menu management (protected route)
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+## Technologies Used
 
-- Configure the top-level `parserOptions` property like this:
-
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
-
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
-
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
-
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+- **React**: A JavaScript library for building user interfaces
+- **TypeScript**: A typed superset of JavaScript that compiles to plain JavaScript
+- **React Router**: Declarative routing for React applications
+- **Tailwind CSS**: A utility-first CSS framework for rapidly building custom user interfaces
+- **Supabase**: An open-source Firebase alternative providing a backend-as-a-service with real-time and RESTful APIs
+- **Lucide React**: A library of simply beautiful open-source icons
+- **shadcn/ui**: A collection of re-usable components built with Radix UI and Tailwind CSS
