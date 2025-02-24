@@ -1,3 +1,5 @@
+"use client";
+
 import { useState, useEffect } from "react";
 import { supabase } from "../lib/supabase";
 import { Plus, Save, Trash2 } from "lucide-react";
@@ -13,6 +15,7 @@ import {
 import { Textarea } from "../components/components/ui/textarea";
 import { Toaster } from "../components/components/ui/toaster";
 import { useToast } from "../components/hooks/use-toast";
+import PriceListImage from "../components/PriceListImage";
 
 interface MenuItem {
   id: number;
@@ -165,7 +168,7 @@ export default function AdminPanel() {
           const { data, error } = await supabase
             .from("menu_items")
             .update({ price: price })
-            .eq("id", parseInt(id))
+            .eq("id", Number.parseInt(id))
             .select();
 
           if (error) throw error;
@@ -228,7 +231,10 @@ export default function AdminPanel() {
             placeholder="Precio"
             value={newItem.price}
             onChange={(e) =>
-              setNewItem({ ...newItem, price: parseFloat(e.target.value) })
+              setNewItem({
+                ...newItem,
+                price: Number.parseFloat(e.target.value),
+              })
             }
           />
           <Select
@@ -295,22 +301,13 @@ export default function AdminPanel() {
                         type="number"
                         value={
                           priceChanges[item.id] !== undefined
-                            ? priceChanges[item.id] === null
-                              ? ""
-                              : priceChanges[item.id]
-                            : item.price === null
-                            ? ""
+                            ? priceChanges[item.id]
                             : item.price
                         }
                         onChange={(e) => {
-                          const newValue = e.target.value;
-                          if (newValue === "") {
-                            handlePriceChange(item.id, 0);
-                          } else {
-                            const newPrice = parseFloat(newValue);
-                            if (!isNaN(newPrice)) {
-                              handlePriceChange(item.id, newPrice);
-                            }
+                          const newPrice = Number.parseFloat(e.target.value);
+                          if (!isNaN(newPrice)) {
+                            handlePriceChange(item.id, newPrice);
                           }
                         }}
                         className="w-24 mr-2"
@@ -336,6 +333,9 @@ export default function AdminPanel() {
       >
         <Save className="mr-2 h-4 w-4" /> Guardar cambios
       </Button>
+
+      <PriceListImage menuItems={menuItems} />
+
       <Toaster />
     </div>
   );
