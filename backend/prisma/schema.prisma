@@ -1,0 +1,118 @@
+generator client {
+  provider = "prisma-client-js"
+}
+
+datasource db {
+  provider = "postgresql"
+  url      = env("DATABASE_URL")
+}
+
+// ─── Auth ──────────────────────────────────────────────────────────────────
+
+model Admin {
+  id           Int      @id @default(autoincrement())
+  email        String   @unique
+  passwordHash String
+  createdAt    DateTime @default(now())
+}
+
+// ─── Menu ──────────────────────────────────────────────────────────────────
+
+model Category {
+  id        Int        @id @default(autoincrement())
+  name      String     @unique
+  slug      String     @unique
+  sortOrder Int
+  items     MenuItem[]
+}
+
+model MenuItem {
+  id          Int      @id @default(autoincrement())
+  name        String
+  price       Float
+  categoryId  Int
+  category    Category @relation(fields: [categoryId], references: [id], onDelete: Cascade)
+  description String?
+  available   Boolean  @default(true)
+  sortOrder   Int
+  createdAt   DateTime @default(now())
+  updatedAt   DateTime @updatedAt
+
+  @@unique([name, categoryId])
+}
+
+// ─── Pizza Party ───────────────────────────────────────────────────────────
+
+model PizzaPartyConfig {
+  id             Int    @id @default(1)
+  pricePerPerson Float
+  minimumGuests  Int    @default(20)
+  baseHours      Int    @default(3)
+  extraHourPrice Float
+  mozzoPrice     Float
+  serviceDetails String
+}
+
+enum PizzaPartyStatus {
+  pending
+  confirmed
+  rejected
+}
+
+model PizzaPartyRequest {
+  id          Int              @id @default(autoincrement())
+  name        String
+  email       String
+  phone       String
+  eventDate   DateTime
+  guests      Int
+  extraHours  Int              @default(0)
+  extraMozzos Int              @default(0)
+  message     String?
+  totalPrice  Float
+  status      PizzaPartyStatus @default(pending)
+  adminNotes  String?
+  createdAt   DateTime         @default(now())
+}
+
+// ─── Offers ────────────────────────────────────────────────────────────────
+
+model Offer {
+  id          Int      @id @default(autoincrement())
+  title       String
+  description String
+  badge       String?
+  validFrom   DateTime
+  validTo     DateTime
+  active      Boolean  @default(true)
+  createdAt   DateTime @default(now())
+}
+
+// ─── Operations ────────────────────────────────────────────────────────────
+
+model Schedule {
+  dayOfWeek   Int     @id
+  openTime    String
+  closeTime   String
+  isOpen      Boolean
+  specialNote String?
+}
+
+model WeeklyMenuDay {
+  id        Int      @id @default(autoincrement())
+  weekStart DateTime
+  dayOfWeek Int
+  dishes    String[]
+
+  @@unique([weekStart, dayOfWeek])
+}
+
+model ContactMessage {
+  id        Int      @id @default(autoincrement())
+  name      String
+  email     String
+  phone     String?
+  message   String
+  read      Boolean  @default(false)
+  createdAt DateTime @default(now())
+}
