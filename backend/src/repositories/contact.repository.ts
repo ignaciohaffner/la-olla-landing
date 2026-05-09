@@ -9,3 +9,12 @@ export interface CreateContactInput {
 
 export const createContactMessage = (data: CreateContactInput) =>
   prisma.contactMessage.create({ data });
+
+export const findAllContactMessages = () =>
+  prisma.contactMessage.findMany({ orderBy: { createdAt: 'desc' } });
+
+export const markContactMessageRead = (id: number) =>
+  prisma.contactMessage.update({ where: { id }, data: { read: true } });
+
+export const countUnreadMessages = () =>
+  prisma.contactMessage.count({ where: { read: false } });
