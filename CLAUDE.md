@@ -1,5 +1,5 @@
 <!-- SPECKIT START -->
 For additional context about technologies to be used, project structure,
 shell commands, and other important information, read the current plan
-at specs/001-database-schema/plan.md
+at specs/002-public-api-routes/plan.md
 <!-- SPECKIT END -->
