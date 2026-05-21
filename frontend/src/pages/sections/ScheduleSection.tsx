@@ -4,6 +4,15 @@ import { Badge } from '@/components/ui/badge'
 
 const DAY_NAMES = ['Domingo', 'Lunes', 'Martes', 'Miércoles', 'Jueves', 'Viernes', 'Sábado']
 
+const todayIndex = new Date().getDay()
+
+function formatHours(day: { isOpen: boolean; openTime: string; closeTime: string; openTime2: string | null; closeTime2: string | null }) {
+  if (!day.isOpen) return 'Cerrado'
+  const slot1 = `${day.openTime} – ${day.closeTime}`
+  if (day.openTime2 && day.closeTime2) return `${slot1} / ${day.openTime2} – ${day.closeTime2}`
+  return slot1
+}
+
 const rowVariants = {
   hidden: { opacity: 0, x: -20 },
   show: (i: number) => ({
@@ -17,11 +26,12 @@ export default function ScheduleSection() {
   const { schedule, isOpenNow, isLoading, error } = useCurrentSchedule()
 
   return (
-    <section className="py-10 px-4 bg-gray-50">
+    <section className="py-12 px-4 bg-[#FAF7F2]">
       <div className="max-w-xl mx-auto">
-        <div className="flex items-center justify-between mb-6 gap-4 flex-wrap">
+        <div className="flex items-center justify-between mb-7 gap-4 flex-wrap">
           <motion.h2
-            className="text-xl md:text-2xl font-bold text-green-800"
+            className="text-xl md:text-2xl font-semibold text-[#1B4332]"
+            style={{ fontFamily: 'Lora, Georgia, serif' }}
             initial={{ opacity: 0, y: 20 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
@@ -40,7 +50,7 @@ export default function ScheduleSection() {
               <Badge
                 className={
                   isOpenNow
-                    ? 'bg-green-500 text-white hover:bg-green-500 text-sm px-3 py-1'
+                    ? 'bg-green-600 text-white hover:bg-green-600 text-sm px-3 py-1'
                     : 'bg-red-500 text-white hover:bg-red-500 text-sm px-3 py-1'
                 }
               >
@@ -50,35 +60,41 @@ export default function ScheduleSection() {
           )}
         </div>
 
-        {isLoading && <p className="text-gray-400 text-sm">Cargando horarios...</p>}
+        {isLoading && <p className="text-stone-400 text-sm">Cargando horarios...</p>}
 
         {error && !isLoading && (
-          <p className="text-gray-500 text-sm">Verificá nuestros horarios por WhatsApp.</p>
+          <p className="text-stone-500 text-sm">Verificá nuestros horarios por WhatsApp.</p>
         )}
 
         {schedule && !isLoading && (
-          <ul className="divide-y divide-gray-200">
-            {schedule.map((day, i) => (
-              <motion.li
-                key={day.dayOfWeek}
-                className="py-3"
-                custom={i}
-                variants={rowVariants}
-                initial="hidden"
-                whileInView="show"
-                viewport={{ once: true, margin: '-20px' }}
-              >
-                <div className="flex items-center justify-between">
-                  <span className="font-medium text-gray-700">{DAY_NAMES[day.dayOfWeek]}</span>
-                  <span className="text-gray-500 text-sm">
-                    {day.isOpen ? `${day.openTime} – ${day.closeTime}` : 'Cerrado'}
-                  </span>
-                </div>
-                {day.specialNote && (
-                  <p className="text-xs text-yellow-600 mt-1">{day.specialNote}</p>
-                )}
-              </motion.li>
-            ))}
+          <ul className="divide-y divide-[#EDE5D8]">
+            {schedule.map((day, i) => {
+              const isToday = day.dayOfWeek === todayIndex
+              return (
+                <motion.li
+                  key={day.dayOfWeek}
+                  className={`py-3 px-3 rounded-lg transition-colors ${isToday ? 'bg-[#C8522A]/8' : ''}`}
+                  custom={i}
+                  variants={rowVariants}
+                  initial="hidden"
+                  whileInView="show"
+                  viewport={{ once: true, margin: '-20px' }}
+                >
+                  <div className="flex items-center justify-between gap-2">
+                    <span className={`font-medium text-sm ${isToday ? 'text-[#C8522A] font-semibold' : 'text-stone-700'}`}>
+                      {DAY_NAMES[day.dayOfWeek]}
+                      {isToday && <span className="ml-2 text-xs text-[#C8522A]/70 font-normal">hoy</span>}
+                    </span>
+                    <span className={`text-sm tabular-nums ${isToday ? 'text-[#C8522A] font-medium' : 'text-stone-500'}`}>
+                      {formatHours(day)}
+                    </span>
+                  </div>
+                  {day.specialNote && (
+                    <p className="text-xs text-[#C8522A]/80 mt-1">{day.specialNote}</p>
+                  )}
+                </motion.li>
+              )
+            })}
           </ul>
         )}
       </div>

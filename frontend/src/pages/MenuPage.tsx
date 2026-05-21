@@ -53,12 +53,12 @@ export default function MenuPage() {
           >
             <Tabs defaultValue={data[0].category.slug}>
               <div className="overflow-x-auto -mx-4 px-4">
-                <TabsList className="flex w-max gap-1 h-auto p-1 mb-6">
+                <TabsList className="flex w-max gap-1 h-auto p-1 mb-6 bg-gray-100">
                   {data.map(({ category }) => (
                     <TabsTrigger
                       key={category.slug}
                       value={category.slug}
-                      className="min-h-[44px] px-4 whitespace-nowrap"
+                      className="min-h-[44px] px-4 whitespace-nowrap data-[state=active]:bg-green-700 data-[state=active]:text-white data-[state=active]:shadow-none"
                     >
                       {category.name}
                     </TabsTrigger>

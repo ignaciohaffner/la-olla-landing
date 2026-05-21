@@ -13,10 +13,11 @@ export default function OffersSection() {
   if (isLoading || error || !data || data.length === 0) return null
 
   return (
-    <section className="py-16 px-4 bg-yellow-50">
+    <section className="py-16 px-4 bg-[#EDE5D8]">
       <div className="max-w-5xl mx-auto">
         <motion.h2
-          className="text-2xl md:text-3xl font-bold text-green-800 text-center mb-10"
+          className="text-2xl md:text-3xl font-semibold text-[#1B4332] text-center mb-10"
+          style={{ fontFamily: 'Lora, Georgia, serif' }}
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -37,14 +38,19 @@ export default function OffersSection() {
               key={offer.id}
               variants={fadeUpItem}
               whileHover={{ y: -4, scale: 1.02, transition: { duration: 0.2 } }}
-              className="bg-white rounded-xl shadow-sm border border-yellow-100 p-5 flex flex-col gap-3"
+              className="bg-white rounded-xl shadow-sm border border-[#D4C4B0] p-5 flex flex-col gap-3"
             >
-              <Badge className="self-start bg-yellow-400 text-green-900 hover:bg-yellow-400">
+              <Badge className="self-start bg-[#C8522A] text-white hover:bg-[#C8522A]">
                 {offer.badge}
               </Badge>
-              <h3 className="font-semibold text-gray-800 text-lg leading-tight">{offer.title}</h3>
-              <p className="text-gray-500 text-sm flex-1">{offer.description}</p>
-              <p className="text-xs text-gray-400">Válido hasta {formatDate(offer.validTo)}</p>
+              <h3
+                className="font-semibold text-[#1C1A18] text-lg leading-tight"
+                style={{ fontFamily: 'Lora, Georgia, serif' }}
+              >
+                {offer.title}
+              </h3>
+              <p className="text-stone-500 text-sm flex-1 leading-relaxed">{offer.description}</p>
+              <p className="text-xs text-stone-400">Válido hasta {formatDate(offer.validTo)}</p>
             </motion.div>
           ))}
         </motion.div>

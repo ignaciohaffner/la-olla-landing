@@ -15,7 +15,10 @@ export const getScheduleWithOpenNow = async () => {
     isOpenNow:
       row.dayOfWeek === day &&
       row.isOpen &&
-      time >= row.openTime &&
-      time < row.closeTime,
+      (
+        (time >= row.openTime && time < row.closeTime) ||
+        (row.openTime2 != null && row.closeTime2 != null &&
+          time >= row.openTime2 && time < row.closeTime2)
+      ),
   }));
 };

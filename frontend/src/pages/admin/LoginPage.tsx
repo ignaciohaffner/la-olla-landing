@@ -1,4 +1,5 @@
 import { useState } from 'react'
+import { Navigate } from 'react-router-dom'
 import { useForm } from 'react-hook-form'
 import { zodResolver } from '@hookform/resolvers/zod'
 import { z } from 'zod'
@@ -12,14 +13,15 @@ const loginSchema = z.object({
 type LoginFormData = z.infer<typeof loginSchema>
 
 export default function LoginPage() {
-  const { login } = useAuth()
+  const { login, isAuthenticated } = useAuth()
   const [error, setError] = useState<string | null>(null)
-
   const {
     register,
     handleSubmit,
     formState: { errors, isSubmitting },
   } = useForm<LoginFormData>({ resolver: zodResolver(loginSchema) })
+
+  if (isAuthenticated) return <Navigate to="/admin/panel" replace />
 
   async function onSubmit(data: LoginFormData) {
     setError(null)

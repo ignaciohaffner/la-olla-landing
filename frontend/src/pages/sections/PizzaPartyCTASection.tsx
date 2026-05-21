@@ -26,7 +26,7 @@ export default function PizzaPartyCTASection() {
         >
           <Link
             to="/pizza-party"
-            className="flex items-center justify-center min-h-[44px] px-8 bg-yellow-400 text-green-900 font-semibold rounded-lg hover:bg-yellow-300 transition-colors"
+            className="flex items-center justify-center min-h-[44px] px-8 bg-[#C8522A] text-white font-semibold rounded-lg hover:bg-[#A8421E] transition-colors shadow-lg shadow-black/20"
           >
             Conocé más
           </Link>

@@ -473,3 +473,4 @@ Correr estos prompts en secuencia, esperando que speckit genere cada spec antes 
 8. `/speckit.plan` → sin prompt extra, deja que lea los specs generados
 9. `/speckit.tasks` → sin prompt extra
 10. `/speckit.implement` → por módulo, en orden
+    ç

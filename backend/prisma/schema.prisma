@@ -92,9 +92,11 @@ model Offer {
 
 model Schedule {
   dayOfWeek   Int     @id
+  isOpen      Boolean
   openTime    String
   closeTime   String
-  isOpen      Boolean
+  openTime2   String?
+  closeTime2  String?
   specialNote String?
 }
 

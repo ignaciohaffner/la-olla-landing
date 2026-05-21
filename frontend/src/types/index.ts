@@ -1,8 +1,10 @@
 export interface ScheduleDay {
   dayOfWeek: number
+  isOpen: boolean
   openTime: string
   closeTime: string
-  isOpen: boolean
+  openTime2: string | null
+  closeTime2: string | null
   specialNote: string | null
   isOpenNow: boolean
 }
@@ -116,3 +118,96 @@ export interface ContactPayload {
   phone?: string
   message: string
 }
+
+// ─── Admin types ───────────────────────────────────────────────────────────
+
+export interface AdminMenuItem {
+  id: number
+  name: string
+  price: number
+  description: string | null
+  available: boolean
+  sortOrder: number
+  categoryId: number
+}
+
+export interface AdminMenuCategory {
+  id: number
+  name: string
+  slug: string
+  sortOrder: number
+  items: AdminMenuItem[]
+}
+
+export type AdminMenuResponse = AdminMenuCategory[]
+
+export interface AdminCategory {
+  id: number
+  name: string
+  slug: string
+  sortOrder: number
+}
+
+export type AdminCategoriesResponse = AdminCategory[]
+
+export interface PizzaPartyRequest {
+  id: number
+  name: string
+  email: string
+  phone: string
+  eventDate: string
+  guests: number
+  extraHours: number
+  extraMozzos: number
+  message: string | null
+  totalPrice: number
+  status: 'pending' | 'confirmed' | 'rejected'
+  adminNotes: string | null
+  createdAt: string
+}
+
+export type PizzaPartyRequestsResponse = PizzaPartyRequest[]
+
+export interface AdminOffer {
+  id: number
+  title: string
+  description: string
+  badge: string | null
+  validFrom: string
+  validTo: string
+  active: boolean
+  createdAt: string
+}
+
+export type AdminOffersResponse = AdminOffer[]
+
+export interface AdminScheduleDay {
+  dayOfWeek: number
+  isOpen: boolean
+  openTime: string
+  closeTime: string
+  openTime2: string | null
+  closeTime2: string | null
+  specialNote: string | null
+}
+
+export type AdminScheduleResponse = AdminScheduleDay[]
+
+export interface ContactMessage {
+  id: number
+  name: string
+  email: string
+  phone: string | null
+  message: string
+  read: boolean
+  createdAt: string
+}
+
+export type ContactMessagesResponse = ContactMessage[]
+
+export interface WeeklyMenuPutDay {
+  dayOfWeek: number
+  dishes: string[]
+}
+
+export type WeeklyMenuPutBody = WeeklyMenuPutDay[]

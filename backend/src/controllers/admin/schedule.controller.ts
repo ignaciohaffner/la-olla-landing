@@ -2,13 +2,17 @@ import { Request, Response, NextFunction } from 'express';
 import { z } from 'zod';
 import { findAllSchedule, upsertScheduleDays } from '../../repositories/schedule.repository';
 
+const timeRegex = /^\d{2}:\d{2}$/;
+
 const SchedulePatchSchema = z
   .array(
     z.object({
       dayOfWeek: z.number().int().min(0).max(6),
-      openTime: z.string().regex(/^\d{2}:\d{2}$/),
-      closeTime: z.string().regex(/^\d{2}:\d{2}$/),
       isOpen: z.boolean(),
+      openTime: z.string().regex(timeRegex),
+      closeTime: z.string().regex(timeRegex),
+      openTime2: z.string().regex(timeRegex).nullable().optional(),
+      closeTime2: z.string().regex(timeRegex).nullable().optional(),
       specialNote: z.string().nullable().optional(),
     })
   )
